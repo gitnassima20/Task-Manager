@@ -1,0 +1,40 @@
+<div class="row my-5 ">
+    <div class="col-md-4 mx-auto">
+        <form [formGroup]="taskForm" (ngSubmit)="addTask()">
+            <div class="form-group"> 
+                <label for="task" class="form-label">Task</label>
+                <input formControlName="taskName" type="text" name="" id="title" class="form-control my-2">
+                <div class="alert alert-danger" *ngIf="taskForm.get('taskName')?.invalid && (taskForm.get('taskName')?.dirty || taskForm.get('taskName')?.touched)">
+                    <div *ngIf="taskForm.get('taskName')?.errors?.['required']">Required field</div>
+                    <div *ngIf="taskForm.get('taskName')?.errors?.['minlength']">Min carcters is 6</div>
+                    <div *ngIf="taskForm.get('taskName')?.errors?.['maxlength']">Max caracters is 16</div>
+                    <div *ngIf="taskForm.get('taskName')?.errors?.['pattern']">Only alphabets required</div>
+                </div>        
+            </div>
+            <div class="form-group">
+                <label for="date" class="form-label mt-4">Date</label>
+                <input formControlName="date" type="text" name="" id="date" class="form-control" placeholder="DD/MM/YYYY hh:mm PM|AM">
+                <div class="alert alert-danger my-2" *ngIf="taskForm.get('date')?.invalid && (taskForm.get('date')?.dirty || taskForm.get('date')?.touched)">
+                    <div *ngIf="taskForm.get('date')?.errors?.['required']">Required field</div>
+                    <div *ngIf="taskForm.get('date')?.errors?.['pattern']">Invalid date format</div>
+                </div>  
+            </div>
+            <div class="form-group"> 
+                <label for="description" class="form-label">Description</label>
+                <input formControlName="description" type="text" name="" id="title" class="form-control my-2">
+                <div class="alert alert-danger" *ngIf="taskForm.get('description')?.invalid && (taskForm.get('description')?.dirty || taskForm.get('description')?.touched)">
+                    <div *ngIf="taskForm.get('description')?.errors?.['required']">Required field</div>
+                    <div *ngIf="taskForm.get('description')?.errors?.['minlength']">Min carcters is 10</div>
+                    <div *ngIf="taskForm.get('description')?.errors?.['maxlength']">Max caracters is 25</div>
+                    <div *ngIf="taskForm.get('description')?.errors?.['pattern']">Only alphabets required</div>
+                </div>        
+            </div>
+            <div class="d-grid mt-4">
+                <button  [disabled]="!taskForm.valid" class="my-2 btn btn-outline-info">
+                    <i class="fa fa-plus-circle" aria-hidden="true"></i>Add
+                </button>
+            </div>
+        </form>
+        
+    </div>
+</div>

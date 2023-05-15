@@ -1,0 +1,55 @@
+<div class="container">
+  <div class="row my-4">
+    <div class="col-md-6">
+      <div class="alert alert-dismissible alert-success" *ngIf="count">
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        <a href="#" class="alert-link">{{ count }}</a> Tasks available.
+    </div>
+
+    <div class="alert alert-dismissible alert-danger" *ngIf="count == 0">
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+         <a href="#" class="alert-link mx-1">No task</a>is available
+    </div>
+  </div>
+    <div class="col-md-6" align="right">
+        <button routerLink="/add-task" type="button" class="btn btn-outline-light mx-"><i class="fa fa-plus-circle mx-1" style="transform: scale(1.3);" aria-hidden="true"></i>Add new</button>
+    </div>
+
+    <app-task-item [task]="selectedTask" #taskModal (viewInfo)="setSelectedTask($event)"></app-task-item>
+  
+  <div class="card border-dark mb-4 my-2" style="max-width: 100rem;">
+    <div class="card-header"><h4><i class="fa fa-list-ul mx-2" style="font-size: 1.3em;" aria-hidden="true"></i>Task's List</h4></div>
+    <div class="card-body">
+      <div class="row my-2">
+        <div class="col-md-12">
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th scope="col">Reference</th>
+                <th scope="col">Task</th>
+                <th scope="col">Situation</th>
+                <th scope="col">Operations</th>
+              </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let task of tasks">
+                    <th scope="row" >{{ task.id }}</th>
+                    <td>{{ task.taskName }}</td>
+                    <td><span *ngIf="task.situation"><i class="fa fa-check-square-o" aria-hidden="true"></i>:Completed</span>
+                        <span *ngIf="!task.situation"><i class="fa fa-line-chart" aria-hidden="true"></i>:In progress</span>
+                    </td>
+                    <td class="text-right">
+                      <i class="fa fa-eye mx-2 btn-secondary view" (click)="setSelectedTask(task); " style="transform: scale(1.5);" aria-hidden="true" data-bs-toggle="modal" data-bs-target="#exampleModal"></i>
+                      <i class="fa fa-pencil-square-o mx-2 btn-secondary edit" style="transform: scale(1.5);" aria-hidden="true"></i>
+                      <i class="fa fa-trash mx-2 btn-secondary danger" (click)="deleteTask(task.id)" style="transform: scale(1.5);" aria-hidden="true"></i>
+                    </td>
+                </tr>
+              </tbody>
+          </table>
+        </div>
+    </div>
+      
+    </div>
+  </div>
+  
+</div>

@@ -1,0 +1,42 @@
+<div class="modal" tabindex="-1" role="dialog" id="exampleModal">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Details</h4>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true"></span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <table>
+            <tr>
+              <th><i class="mx-2">Reference:</i></th>
+              <td>{{ task?.id}}<td>
+            </tr>
+            <tr>
+              <th><i class="mx-2">Task:</i></th>
+              <td class="mx-5">{{ task?.taskName}}</td>
+            </tr>
+            <tr>
+              <th ><i class="mx-2">Situation:</i></th>
+              <td>
+                <span *ngIf="task?.situation">Completed</span>
+                <span *ngIf="!task?.situation">In progress</span>
+              </td>
+            </tr>
+            <tr class="mx-2">
+              <th><i class="mx-2">Date:</i></th>
+              <td>{{ task?.date | date: 'dd/MM/yyyy hh:mm a' }}</td>
+            </tr>
+            <tr class="mx-2">
+              <th><i class="mx-2">Description:</i></th>
+              <td>{{ task?.description }}</td>
+            </tr>
+          </table>
+        </div>
+        <div class="modal-footer">
+          <button type="button" data-bs-dismiss="modal" class="btn btn-outline-primary">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
